@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--1 通过无参构造实例化User 通过set方法实现属性值的注入-->
+<!--    <bean id="user" class="com.hl.pojo.User">-->
+<!--        <property name="name" value="小何">-->
+<!--        </property>-->
+<!--    </bean>-->
+    <!--2 通过有参构造实例化User 通过下标实现属性值的注入-->
+<!--    <bean id="user" class="com.hl.pojo.User">-->
+<!--        <constructor-arg index="0" value="小何"></constructor-arg>-->
+<!--    </bean>-->
+
+    <!--3 通过有参构造实例化User 通过name实现属性值的注入-->
+<!--    <bean id="user" class="com.hl.pojo.User">-->
+<!--        <constructor-arg name="name" value="小何"></constructor-arg>-->
+<!--    </bean>-->
+
+    <!--4 通过有参构造实例化User 通过type实现属性值的注入-->
+    <bean id="user" class="com.hl.pojo.User">
+        <constructor-arg type="java.lang.String" value="小i"></constructor-arg>
+    </bean>
+
+</beans>

@@ -11,6 +11,9 @@
     <modules>
         <module>spring-01-ioc01</module>
         <module>spring-02-hellospring</module>
+        <module>spring-01-ioc02</module>
+        <module>spring-03-ioc02</module>
+        <module>spring-04-di</module>
     </modules>
 
     <dependencies>
@@ -24,6 +27,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
 

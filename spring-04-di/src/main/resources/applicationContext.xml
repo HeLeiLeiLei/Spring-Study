@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="address" class="com.hl.pojo.Address">
+        <property name="address" value="成都"/>
+    </bean>
+
+    <bean id="student" class="com.hl.pojo.Student">
+        <!--普通值注入 value标签即可实现-->
+        <property name="name" value="小l"/>
+        <!--对象依赖注入-->
+        <property name="address" ref="address"/>
+        <!--数组-->
+        <property name="books">
+            <array>
+                <value>西游记</value>
+                <value>红楼梦</value>
+                <value>水浒传</value>
+                <value>三国演义</value>
+            </array>
+        </property>
+        <!--list-->
+        <property name="hobbies">
+            <list>
+                <value>玩游戏</value>
+                <value>唱歌</value>
+                <value>敲代码</value>
+            </list>
+        </property>
+        <!--map-->
+        <property name="card">
+            <map>
+                <entry key="身份证" value="513723199900008888"/>
+                <entry key="电话" value="182827767750"/>
+            </map>
+        </property>
+        <!--set-->
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>COC</value>
+                <value>BOB</value>
+            </set>
+        </property>
+        <!--String null-->
+        <property name="wife">
+            <null></null>
+        </property>
+        <!--Properties-->
+        <property name="info">
+            <props>
+                <prop key="Driver">com.mysql.Driver.jdbc</prop>
+                <prop key="url">localhost:3306</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <!--<bean id="user" class="com.hl.pojo.User" p:name="小何" p:age="18"/>-->
+    <!-- p标签就类似于 下面这个种简化后的效果 通过无参构造实例化 set注入参数
+    <bean id="user" class="com.hl.pojo.User">
+        <property name="name" value="小何"/>
+        <property name="age" value="18"/>
+    </bean>
+    -->
+    <!--singleton 单例模式   user1==user2 true-->
+    <!--prototype 双例模式   user1==user2 false-->
+    <bean id="user" class="com.hl.pojo.User" c:name="小i" c:age="20" scope="prototype"/>
+    <!--c标签  就类似与下面这种通过构造器实现实例化 然后实现属性值注入-->
+<!--    <bean id="user" class="com.hl.pojo.User">-->
+<!--        <constructor-arg name="name" value="小i"/>-->
+<!--        <constructor-arg name="age" value="20"/>-->
+<!--    </bean>-->
+
+
+
+</beans>
