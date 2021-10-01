@@ -12,6 +12,10 @@
 
     <import resource="classpath:spring-mapper.xml"/>
 
+    <bean id="userMapper" class="com.hl.mapper.UserMapperImpl">
+        <property name="sqlSession" ref="sqlSessionTemplate"/>
+    </bean>
+
 
 
 </beans>

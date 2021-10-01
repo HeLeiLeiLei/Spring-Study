@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
-        https://www.springframework.org/schema/aop/spring-aop.xsd">
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--首先需要准备数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -33,6 +36,28 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="update" propagation="REQUIRED"/>
+            <tx:method name="delete" propagation="REQUIRED"/>
+            <tx:method name="query" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--通过AOP实现织入-->
+    <aop:config>
+        <aop:pointcut id="aopPointcut" expression="execution(* com.hl.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="aopPointcut"/>
+    </aop:config>
+
 
 <!--    &lt;!&ndash;实例化UserMapperImpl&ndash;&gt;-->
 <!--&lt;!&ndash;    <bean id="sqlSession" class="com.hl.mapper.UserMapperImpl">&ndash;&gt;-->
@@ -41,8 +66,7 @@
 
 <!--    <context:annotation-config/>-->
 <!--    <context:component-scan base-package="com.hl.mapper"/>-->
-    <context:annotation-config/>
-    <context:component-scan base-package="com.hl.mapper"/>
+
 
 <!--    <bean id="userMapperImpl2" class="com.hl.mapper.UserMapperImpl2">-->
 <!--        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->

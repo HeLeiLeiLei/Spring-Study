@@ -16,10 +16,12 @@
         <module name="spring-01-ioc01" />
         <module name="spring-06-anno" />
         <module name="spring-02-hellospring" />
+        <module name="spring-11-transaction" />
         <module name="spring-09-aop" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="sppring-11-transaction" target="1.5" />
       <module name="spring-08-proxy" target="1.5" />
     </bytecodeTargetLevel>
   </component>

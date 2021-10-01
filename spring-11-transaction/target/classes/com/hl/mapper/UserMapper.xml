@@ -6,6 +6,7 @@
     <select id="queryUsers" resultType="user">
         select * from mybatis.user
     </select>
+
     <insert id="addUser" parameterType="User">
         insert into user (id,userName, userPassword) values (#{id},#{userName},#{userPassword});
     </insert>
