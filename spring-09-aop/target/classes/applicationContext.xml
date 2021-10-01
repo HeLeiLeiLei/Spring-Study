@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--开始注解-->
+    <context:annotation-config/>
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.hl"/>
+
+
+<!--    <bean id="log" class="com.hl.log.Log"/>-->
+<!--    <bean id="afterLog" class="com.hl.log.afterLog"/>-->
+<!--    <bean id="userService" class="com.hl.service.UserServiceImpl"/>-->
+<!--    <bean id="diyAspect" class="com.hl.diy.DiyAspect"/>-->
+
+    <!--方法一 原生态spring Api接口实现aop-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.hl.service.UserServiceImpl.*(..))"/>-->
+<!--        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>-->
+<!--        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>-->
+<!--    </aop:config>-->
+
+    <!--方法二 自定义Aspect实现aop-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.hl.service.UserServiceImpl.*(..))"/>-->
+<!--        <aop:aspect id="diyAspect1" ref="diyAspect">-->
+<!--            <aop:before method="befroe" pointcut-ref="pointcut"/>-->
+<!--            <aop:after method="after" pointcut-ref="pointcut"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!--方法三 注解实现aop-->
+    <!--开启注解-->
+    <aop:aspectj-autoproxy/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.hl.anno"/>
+<!--    <bean id="userService" class="com.hl.service.UserServiceImpl"/>-->
+<!--    <bean id="diyAnno" class="com.hl.anno.DiyAnno"/>-->
+
+
+</beans>
